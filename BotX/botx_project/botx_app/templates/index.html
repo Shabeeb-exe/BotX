@@ -1,0 +1,42 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BotX - URL Extractor Tool">
+    <title>BotX - URL Extractor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>BotX - URL Extractor</h1>
+        <form id="urlForm">
+            {% csrf_token %}
+            <div class="input-group">
+                <input 
+                    type="url" 
+                    id="urlInput" 
+                    placeholder="Enter website URL (e.g., https://example.com)" 
+                    required
+                    pattern="https?://.+"
+                    title="Please enter a valid URL starting with http:// or https://"
+                >
+                <button type="submit" id="submitBtn">
+                    <i class="fas fa-search"></i> Extract URLs
+                </button>
+            </div>
+        </form>
+        
+        <div id="progressBarContainer" class="progress-container" style="display: none;">
+            <div id="progressBar" class="progress-bar"></div>
+        </div>
+
+        <div id="results" class="results-container"></div>
+    </div>
+
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
